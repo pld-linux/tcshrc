@@ -1,0 +1,59 @@
+--- tcshrc-1.6.0/src/tcshrc.complete	2004-08-13 19:04:01.000000000 +0200
++++ /mnt/hda8/etc/complete.tcsh	2004-05-19 20:34:23.000000000 +0200
+@@ -1,5 +1,5 @@
+ #
+-# $Id$
++# $Id$
+ # example file using the new completion code
+ #
+ # Debian GNU/Linux
+@@ -38,7 +38,7 @@
+ if ($?_complete) then
+     set noglob
+     if ( ! $?hosts ) set hosts
+-    foreach f ($HOME/.hosts $HOME/.tcshrc.hosts /usr/local/etc/csh.hosts $HOME/.rhosts /etc/hosts.equiv)
++    foreach f ($HOME/.hosts /usr/local/etc/csh.hosts $HOME/.rhosts /etc/hosts.equiv)
+         if ( -r $f ) then
+ 	    set hosts = ($hosts `grep -v "+" $f | grep -E -v "^#" | tr -s " " "	" | cut -f 1`)
+ 	endif
+@@ -176,10 +176,7 @@
+     complete limit	c/-/"(h)"/ n/*/l/
+     complete unlimit	c/-/"(h)"/ n/*/l/
+ 
+-## For some reason, you can type "co<TAB>" you only get compress
+-## which is not correct. With this, it is "fixed". Thanks Tim Cera (timcera)
+-#    complete -co*	p/0/"(compress)"/	# make compress completion
+-#
++    complete -co*	p/0/"(compress)"/	# make compress completion
+ 						# not ambiguous
+ if ($?traditional_complete) then
+     complete zcat	n/*/f:*.Z/
+@@ -1022,7 +1019,7 @@
+     complete  mount	c/-/"(a F m o O p r v V)"/ n/-p/n/ n/-v/n/ \
+     			n/-o/x:'<FSType_options>'/ \
+     			n@-F@'`\ls -1 /usr/lib/fs`'@ \
+-    			n@*@'`grep -v "^#" /etc/vfstab | tr -s " " "	 " | cut -f 3`'@
++    			n@*@'`grep -v "^#" /etc/fstab | tr -s " " "	 " | cut -f 2`'@
+     complete umount	c/-/"(a o V)"/ n/-o/x:'<FSType_options>'/ \
+     			n/*/'`mount | cut -d " " -f 1`'/
+     complete  mountall	c/-/"(F l r)"/ n@-F@'`\ls -1 /usr/lib/fs`'@
+@@ -1060,14 +1057,11 @@
+       unset _domain _ypdir
+     endif
+ 
+-## This completion can fail miserably. You type "make" and you get a strange
+-## message, while nothing happens. To save from frustration, it's disabled.
+-## Thanks miklos for also pointing out.
+-##    complete make \
+-#	'n/-f/f/' \
+-#      	'c/*=/f/' \
+-#	'n@*@`cat -s GNUmakefile Makefile makefile |& sed -n -e "/No such file/d" -e "/^[^     #].*:/s/:.*//p"`@'
+-#
++    complete make \
++	'n/-f/f/' \
++      	'c/*=/f/' \
++	'n@*@`cat -s GNUmakefile Makefile makefile |& sed -n -e "/No such file/d" -e "/^[^     #].*:/s/:.*//p"`@'
++
+     if ( -f /etc/printcap ) then
+ 	set printers=(`sed -n -e "/^[^     #].*:/s/:.*//p" /etc/printcap`)
+ 
