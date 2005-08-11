@@ -4,10 +4,10 @@ Version:	1.6.0
 Release:	0.1
 License:	GPL
 Group:		Applications/Shells
-Source0:	http://mesh.dl.sourceforge.net/sourceforge/tcshrc/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/tcshrc/%{name}-%{version}.tar.gz
 # Source0-md5:	fd61940de46da9f682600eb47c44842e
 Patch0:		%{name}-complete.patch
-URL:		http://tcshrc.sourceforge.net
+URL:		http://tcshrc.sourceforge.net/
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
