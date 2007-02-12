@@ -1,5 +1,5 @@
 Summary:	Tcsh dot file enhancements, complete package
-Summary(pl.UTF-8):   Rozszerzenia konfiguracji tcsh - pełny pakiet
+Summary(pl.UTF-8):	Rozszerzenia konfiguracji tcsh - pełny pakiet
 Name:		tcshrc
 Version:	1.6.0
 Release:	0.1
